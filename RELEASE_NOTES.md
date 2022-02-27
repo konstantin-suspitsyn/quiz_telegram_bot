@@ -13,3 +13,6 @@ Implemented commands:
 Added Unit Tests:
 * SendBotMessage
 * CommandContainer
+
+## 0.2.0-SNAPSHOT
+CSTB3: Added Docker
