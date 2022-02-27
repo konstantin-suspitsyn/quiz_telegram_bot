@@ -1,17 +1,27 @@
 package com.github.konstantinsuspitsyn.customsurveytelegrambot.bot;
 
+import com.github.konstantinsuspitsyn.customsurveytelegrambot.command.CommandContainer;
+import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.SendBotMessageServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import static com.github.konstantinsuspitsyn.customsurveytelegrambot.command.CommandName.*;
 
 /**
  *  Telegram bot to create custom surveys
  */
 @Component
 public class CustomServeyTelegramBot extends TelegramLongPollingBot {
+
+    // Symbol that opens command for bot
+    public static String COMMAND_PREFIX = "/";
+
+    private final CommandContainer commandContainer;
+
+    public CustomServeyTelegramBot() {
+        commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
+    }
 
     @Value("${bot.username}")
     private String username;
@@ -34,20 +44,13 @@ public class CustomServeyTelegramBot extends TelegramLongPollingBot {
 
         if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText().trim();
-            String chatId = update.getMessage().getChatId().toString();
+            if (message.startsWith(COMMAND_PREFIX)) {
+                String commandIdentifier = message.split(" ")[0];
 
-            SendMessage sm = new SendMessage();
-
-            sm.setChatId(chatId);
-            sm.setText(message);
-
-            try {
-                execute(sm);
-            } catch (TelegramApiException e) {
-                // TODO: Add logging
-                e.printStackTrace();
+                commandContainer.retrieveCommand(commandIdentifier).execute(update);
+            } else {
+                commandContainer.retrieveCommand(NO.getCommandName()).execute(update);
             }
-
         }
 
     }
