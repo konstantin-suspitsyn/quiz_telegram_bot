@@ -16,3 +16,8 @@ Added Unit Tests:
 
 ## 0.2.0-SNAPSHOT
 CSTB3: Added Docker
+
+## 0.3.0-SNAPSHOT
+CSTB4: Added Repository Level
+Implemented commands:
+* stat

@@ -15,8 +15,9 @@ public class HelpCommand implements Command {
     public static final String HELP_MESSAGE = String.format("Доступные команды:\n" +
             "%s — начать работу с ботом\n" +
             "%s — закончить работу с ботом\n" +
-            "%s — помощь по работе с ботом\n",
-            START.getCommandName(), STOP.getCommandName(), HELP.getCommandName());
+            "%s — помощь по работе с ботом\n" +
+            "%s — статистика бота\n",
+            START.getCommandName(), STOP.getCommandName(), HELP.getCommandName(), STAT.getCommandName());
 
     public HelpCommand(SendBotMessageService sendBotMessageService) {
         this.sendBotMessageService = sendBotMessageService;
