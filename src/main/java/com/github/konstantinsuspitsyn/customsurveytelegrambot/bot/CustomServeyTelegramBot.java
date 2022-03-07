@@ -2,6 +2,7 @@ package com.github.konstantinsuspitsyn.customsurveytelegrambot.bot;
 
 import com.github.konstantinsuspitsyn.customsurveytelegrambot.command.CommandContainer;
 import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.SendBotMessageServiceImpl;
+import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.TelegramUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -19,8 +20,8 @@ public class CustomServeyTelegramBot extends TelegramLongPollingBot {
 
     private final CommandContainer commandContainer;
 
-    public CustomServeyTelegramBot() {
-        commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
+    public CustomServeyTelegramBot(TelegramUserService telegramUserService) {
+        commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService);
     }
 
     @Value("${bot.username}")

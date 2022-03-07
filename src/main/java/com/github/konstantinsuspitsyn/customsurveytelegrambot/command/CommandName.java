@@ -8,7 +8,8 @@ public enum CommandName {
     START("/start"),
     STOP("/stop"),
     HELP("/help"),
-    NO("nothing");
+    NO("nothing"),
+    STAT("/stat");
 
     public String getCommandName() {
         return commandName;

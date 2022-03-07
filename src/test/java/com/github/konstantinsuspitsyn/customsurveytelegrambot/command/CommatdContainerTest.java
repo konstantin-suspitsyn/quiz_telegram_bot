@@ -1,6 +1,7 @@
 package com.github.konstantinsuspitsyn.customsurveytelegrambot.command;
 
 import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.SendBotMessageService;
+import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.TelegramUserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,11 +14,12 @@ import java.util.Arrays;
 public class CommatdContainerTest {
 
     private CommandContainer commandContainer;
+    private TelegramUserService telegramUserService;
 
     @BeforeEach
     public void init() {
         SendBotMessageService sendBMessageService = Mockito.mock(SendBotMessageService.class);
-        commandContainer = new CommandContainer(sendBMessageService);
+        commandContainer = new CommandContainer(sendBMessageService, telegramUserService);
     }
 
     @Test
