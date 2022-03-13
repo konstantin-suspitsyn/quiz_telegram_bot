@@ -15,6 +15,9 @@ public class TelegramUser {
     @Column(name = "chat_id")
     private String chatId;
 
+    @Column(name = "user_name")
+    private String userName;
+
     @Column(name = "active")
     private boolean active;
 
