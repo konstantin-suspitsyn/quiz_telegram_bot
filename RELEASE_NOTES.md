@@ -21,3 +21,6 @@ CSTB3: Added Docker
 CSTB4: Added Repository Level
 Implemented commands:
 * stat
+
+## 0.4.0-SNAPSHOT
+User is added by chatId and UserName (@name style)

@@ -13,4 +13,6 @@ public interface TelegramUserService {
 
     Optional<TelegramUser> findByChatID(String chatId);
 
+    Optional<TelegramUser> findByUserName(String userName);
+
 }
