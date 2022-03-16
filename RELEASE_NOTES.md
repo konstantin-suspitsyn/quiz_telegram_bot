@@ -24,3 +24,11 @@ Implemented commands:
 
 ## 0.4.0-SNAPSHOT
 User is added by chatId and UserName (@name style)
+
+## 0.5.0-SNAPSHOT
+Added to User:
+* nickname
+* state
+
+Added CallbackQuery
+Added functionality: if no callback or command was, checks for value in user state field. If state == command, runs it

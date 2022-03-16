@@ -1,7 +1,7 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.command;
+package com.github.konstantinsuspitsyn.quizbot.command;
 
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.SendBotMessageService;
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.TelegramUserService;
+import com.github.konstantinsuspitsyn.quizbot.service.SendBotMessageService;
+import com.github.konstantinsuspitsyn.quizbot.service.TelegramUserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

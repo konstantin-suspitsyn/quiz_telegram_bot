@@ -1,6 +1,6 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.service;
+package com.github.konstantinsuspitsyn.quizbot.service;
 
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.repository.entity.TelegramUser;
+import com.github.konstantinsuspitsyn.quizbot.repository.entity.TelegramUser;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +12,5 @@ public interface TelegramUserService {
     List<TelegramUser> retrieveAllActiveUsers();
 
     Optional<TelegramUser> findByChatID(String chatId);
-
-    Optional<TelegramUser> findByUserName(String userName);
 
 }

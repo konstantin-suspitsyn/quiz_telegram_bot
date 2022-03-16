@@ -1,6 +1,6 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.service;
+package com.github.konstantinsuspitsyn.quizbot.service;
 
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.bot.CustomServeyTelegramBot;
+import com.github.konstantinsuspitsyn.quizbot.bot.CustomQuizBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,11 +12,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class SendBotMessageServiceTest {
 
     private SendBotMessageService sendBotMessageService;
-    private CustomServeyTelegramBot customSTelegramBot;
+    private CustomQuizBot customSTelegramBot;
 
     @BeforeEach
     public void init() {
-        customSTelegramBot = Mockito.mock(CustomServeyTelegramBot.class);
+        customSTelegramBot = Mockito.mock(CustomQuizBot.class);
         sendBotMessageService = new SendBotMessageServiceImpl(customSTelegramBot);
     }
 

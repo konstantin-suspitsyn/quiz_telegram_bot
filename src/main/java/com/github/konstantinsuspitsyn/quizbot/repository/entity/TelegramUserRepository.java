@@ -1,4 +1,4 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.repository.entity;
+package com.github.konstantinsuspitsyn.quizbot.repository.entity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,4 +14,6 @@ public interface TelegramUserRepository extends JpaRepository<TelegramUser, Stri
     List<TelegramUser> findAllByActiveTrue();
 
     Optional<TelegramUser> findByUserName(String userName);
+
+    Optional<TelegramUser> findByState(String state);
 }

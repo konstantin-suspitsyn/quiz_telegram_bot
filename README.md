@@ -1,4 +1,4 @@
-# Custom Survey Telegram Bot
+# Custom Quiz Telegram Bot
 
 ## Deployment
 

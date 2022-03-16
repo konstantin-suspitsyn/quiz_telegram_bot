@@ -1,7 +1,7 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.command;
+package com.github.konstantinsuspitsyn.quizbot.command;
 
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.SendBotMessageService;
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.TelegramUserService;
+import com.github.konstantinsuspitsyn.quizbot.service.SendBotMessageService;
+import com.github.konstantinsuspitsyn.quizbot.service.TelegramUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.objects.Update;
 

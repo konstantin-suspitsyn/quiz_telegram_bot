@@ -1,7 +1,7 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.service;
+package com.github.konstantinsuspitsyn.quizbot.service;
 
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.repository.entity.TelegramUser;
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.repository.entity.TelegramUserRepository;
+import com.github.konstantinsuspitsyn.quizbot.repository.entity.TelegramUser;
+import com.github.konstantinsuspitsyn.quizbot.repository.entity.TelegramUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +33,4 @@ public class TelegramUserServiceImpl implements TelegramUserService {
         return telegramUserRepository.findById(chatId);
     }
 
-    @Override
-    public Optional<TelegramUser> findByUserName(String userName) {
-        return telegramUserRepository.findByUserName(userName);
-    }
 }

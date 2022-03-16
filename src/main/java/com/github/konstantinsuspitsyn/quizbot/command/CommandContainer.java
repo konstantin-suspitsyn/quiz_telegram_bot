@@ -1,10 +1,9 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.command;
+package com.github.konstantinsuspitsyn.quizbot.command;
 
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.SendBotMessageService;
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.TelegramUserService;
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.TelegramUserServiceImpl;
+import com.github.konstantinsuspitsyn.quizbot.service.SendBotMessageService;
+import com.github.konstantinsuspitsyn.quizbot.service.TelegramUserService;
 import com.google.common.collect.ImmutableMap;
-import static com.github.konstantinsuspitsyn.customsurveytelegrambot.command.CommandName.*;
+import static com.github.konstantinsuspitsyn.quizbot.command.CommandName.*;
 
 /**
  * Container of all commands
@@ -22,6 +21,9 @@ public class CommandContainer {
                 .put(HELP.getCommandName(), new HelpCommand(sendBotMessageService))
                 .put(NO.getCommandName(), new NoCommand(sendBotMessageService))
                 .put(STAT.getCommandName(), new StatCommand(sendBotMessageService, telegramUserService))
+                .put(GETNAME.getCommandName(), new GetNameCommand(sendBotMessageService, telegramUserService))
+                .put(COMMANDFROMSTATE.getCommandName(), new CommandFromState(telegramUserService))
+
                 .build();
 
         unknownCommand = new UnknownCommand(sendBotMessageService);
