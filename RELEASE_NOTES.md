@@ -32,3 +32,6 @@ Added to User:
 
 Added CallbackQuery
 Added functionality: if no callback or command was, checks for value in user state field. If state == command, runs it
+
+## 0.5.1-SNAPSHOT
+Refactoring if CustomQuizBot class

@@ -43,48 +43,34 @@ public class CustomQuizBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
 
+        boolean sendAction = false;
+        String message = null;
+        String commandIdentifier = null;
+
+        // Getting message if exists
         if (update.hasMessage() && update.getMessage().hasText()) {
-            String commandIdentifier;
-            String message = update.getMessage().getText().trim();
-
-            // We are getting command from /command message or from user state
-            if (message.startsWith(COMMAND_PREFIX)) {
-                commandIdentifier = message.split(" ")[0];
-            } else {
-                String chatId = update.getMessage().getChatId().toString();
-                commandIdentifier = commandContainer.retrieveCommand(COMMANDFROMSTATE.getCommandName()).retrieveCommand(update);
-            }
-
-            // Running command
-            if (commandIdentifier.startsWith(COMMAND_PREFIX)) {
-                commandContainer.retrieveCommand(commandIdentifier).execute(update);
-            } else {
-                commandContainer.retrieveCommand(NO.getCommandName()).execute(update);
-            }
-
+            sendAction = true;
+            message = update.getMessage().getText().trim();
         } else if (update.hasCallbackQuery()) {
-            System.out.println(update.getCallbackQuery().getMessage());
-            System.out.println(update.getCallbackQuery().getData());
-            System.out.println(update.getCallbackQuery().getId());
-            System.out.println(update.getCallbackQuery().getChatInstance());
+            sendAction = true;
+            message = update.getCallbackQuery().getData();
+        }
 
-            String commandIdentifier;
-            String message = update.getCallbackQuery().getData();
+        // Getting command from message
+        if (!message.startsWith(COMMAND_PREFIX)) {
+            // if no message check state of user and may be command is there
+            commandIdentifier = commandContainer.retrieveCommand(COMMANDFROMSTATE.getCommandName()).retrieveCommand(update);
+        } else if (message.startsWith(COMMAND_PREFIX)) {
+            commandIdentifier = message.split(" ")[0];
+        }
 
-            if (message.startsWith(COMMAND_PREFIX)) {
-                commandIdentifier = message.split(" ")[0];
-            } else {
-                String chatId = update.getMessage().getChatId().toString();
-                commandIdentifier = commandContainer.retrieveCommand(COMMANDFROMSTATE.getCommandName()).retrieveCommand(update);
-            }
-            // TODO: Check if not null
+        // Run command
+        if ((sendAction == true) & (commandIdentifier != null)) {
             if (commandIdentifier.startsWith(COMMAND_PREFIX)) {
                 commandContainer.retrieveCommand(commandIdentifier).execute(update);
             } else {
                 commandContainer.retrieveCommand(NO.getCommandName()).execute(update);
             }
-
-
         }
 
     }
