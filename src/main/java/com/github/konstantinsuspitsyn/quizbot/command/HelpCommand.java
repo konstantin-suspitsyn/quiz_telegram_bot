@@ -1,9 +1,9 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.command;
+package com.github.konstantinsuspitsyn.quizbot.command;
 
-import com.github.konstantinsuspitsyn.customsurveytelegrambot.service.SendBotMessageService;
+import com.github.konstantinsuspitsyn.quizbot.service.SendBotMessageService;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import static com.github.konstantinsuspitsyn.customsurveytelegrambot.command.CommandName.*;
+import static com.github.konstantinsuspitsyn.quizbot.command.CommandName.*;
 
 /**
  * Help Command

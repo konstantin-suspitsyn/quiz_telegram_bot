@@ -1,10 +1,10 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot;
+package com.github.konstantinsuspitsyn.quizbot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CustomSurveyTelegramBotApplicationTests {
+class CustomQuizTelegramBotApplicationTests {
 
 	@Test
 	void contextLoads() {

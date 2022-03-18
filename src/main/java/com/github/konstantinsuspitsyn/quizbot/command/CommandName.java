@@ -1,4 +1,4 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.command;
+package com.github.konstantinsuspitsyn.quizbot.command;
 
 /**
  * List of Command names in one place
@@ -9,7 +9,9 @@ public enum CommandName {
     STOP("/stop"),
     HELP("/help"),
     NO("nothing"),
-    STAT("/stat");
+    STAT("/stat"),
+    GETNAME("/getname"),
+    COMMANDFROMSTATE("commandfromstate");
 
     public String getCommandName() {
         return commandName;

@@ -1,4 +1,4 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.repository.entity;
+package com.github.konstantinsuspitsyn.quizbot.repository.entity;
 
 import lombok.Data;
 
@@ -17,6 +17,12 @@ public class TelegramUser {
 
     @Column(name = "user_name")
     private String userName;
+
+    @Column(name = "nick_name")
+    private String nickName;
+
+    @Column(name = "state")
+    private String state;
 
     @Column(name = "active")
     private boolean active;

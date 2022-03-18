@@ -1,4 +1,4 @@
-package com.github.konstantinsuspitsyn.customsurveytelegrambot.command;
+package com.github.konstantinsuspitsyn.quizbot.command;
 
 
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -8,4 +8,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public interface Command {
     void execute(Update update);
+
+    default String retrieveCommand(Update update) {
+        return "";
+    }
 }
