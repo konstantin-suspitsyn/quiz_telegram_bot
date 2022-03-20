@@ -1,9 +1,7 @@
 package com.github.konstantinsuspitsyn.quizbot.command;
 
-import aj.org.objectweb.asm.TypeReference;
 import com.github.konstantinsuspitsyn.quizbot.service.SendBotMessageService;
 import com.github.konstantinsuspitsyn.quizbot.service.TelegramUserService;
-import org.telegram.telegrambots.meta.api.objects.ApiResponse;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -11,6 +9,8 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static com.github.konstantinsuspitsyn.quizbot.command.CommandName.*;
 
 /**
  * If name was not saved yet
@@ -41,7 +41,7 @@ public class GetNameCommand implements Command {
                         sendBotMessageService.sendMessage(chatId, "Вы готовы приступать к квизу");
                     },
                     () -> {
-                        sendBotMessageService.sendMessage(chatId, "Начните со /start");
+                        sendBotMessageService.sendMessage(chatId, "Начните со " + START.getCommandName());
                     }
             );
         } else {
@@ -51,7 +51,7 @@ public class GetNameCommand implements Command {
 
             InlineKeyboardButton inlineKeyboardButton = new InlineKeyboardButton();
             inlineKeyboardButton.setText("Да, все точно!");
-            inlineKeyboardButton.setCallbackData("/getname " + userNickName);
+            inlineKeyboardButton.setCallbackData(GETNAME.getCommandName() + " " + userNickName);
 
             List<InlineKeyboardButton> newList = new ArrayList<>();
             newList.add(inlineKeyboardButton);
@@ -63,7 +63,7 @@ public class GetNameCommand implements Command {
                         telegramUserService.save(user);
                     },
                     () -> {
-                        sendBotMessageService.sendMessage(chatId, "/start");
+                        sendBotMessageService.sendMessage(chatId, START.getCommandName());
                     }
             );
 

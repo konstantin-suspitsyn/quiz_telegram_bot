@@ -11,6 +11,7 @@ public enum CommandName {
     NO("nothing"),
     STAT("/stat"),
     GETNAME("/getname"),
+    ASKQUESTION("/askquestion"),
     COMMANDFROMSTATE("commandfromstate");
 
     public String getCommandName() {
@@ -18,7 +19,6 @@ public enum CommandName {
     }
 
     private final String commandName;
-
 
     CommandName(String commandName) {
         this.commandName = commandName;
