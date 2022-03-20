@@ -23,7 +23,13 @@ public class CommandFromState implements Command{
 
     @Override
     public String retrieveCommand(Update update) {
-        String chatId = update.getMessage().getChatId().toString();
+        String chatId;
+
+        if (update.hasCallbackQuery()) {
+            chatId = update.getCallbackQuery().getMessage().getChatId().toString();
+        } else {
+            chatId = update.getMessage().getChatId().toString();
+        }
 
         TelegramUser user = telegramUserService.findByChatID(chatId).get();
 

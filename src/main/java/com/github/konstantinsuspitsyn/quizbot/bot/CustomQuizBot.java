@@ -1,6 +1,8 @@
 package com.github.konstantinsuspitsyn.quizbot.bot;
 
 import com.github.konstantinsuspitsyn.quizbot.command.CommandContainer;
+import com.github.konstantinsuspitsyn.quizbot.service.AnswerService;
+import com.github.konstantinsuspitsyn.quizbot.service.QuestionService;
 import com.github.konstantinsuspitsyn.quizbot.service.SendBotMessageServiceImpl;
 import com.github.konstantinsuspitsyn.quizbot.service.TelegramUserService;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,8 +22,8 @@ public class CustomQuizBot extends TelegramLongPollingBot {
 
     private final CommandContainer commandContainer;
 
-    public CustomQuizBot(TelegramUserService telegramUserService) {
-        commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService);
+    public CustomQuizBot(TelegramUserService telegramUserService, QuestionService questionService, AnswerService answerService) {
+        commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService, questionService, answerService);
     }
 
     @Value("${bot.username}")
@@ -65,12 +67,14 @@ public class CustomQuizBot extends TelegramLongPollingBot {
         }
 
         // Run command
-        if ((sendAction == true) & (commandIdentifier != null)) {
+        if ((sendAction == true) && (commandIdentifier != null)) {
             if (commandIdentifier.startsWith(COMMAND_PREFIX)) {
                 commandContainer.retrieveCommand(commandIdentifier).execute(update);
             } else {
                 commandContainer.retrieveCommand(NO.getCommandName()).execute(update);
             }
+        } else {
+            commandContainer.retrieveCommand(NO.getCommandName()).execute(update);
         }
 
     }
