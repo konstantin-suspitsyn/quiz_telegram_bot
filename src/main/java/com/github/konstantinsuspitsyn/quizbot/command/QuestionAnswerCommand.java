@@ -11,10 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.github.konstantinsuspitsyn.quizbot.command.CommandName.ASKQUESTION;
 import static com.github.konstantinsuspitsyn.quizbot.command.CommandName.STOP;
@@ -57,17 +54,21 @@ public class QuestionAnswerCommand implements Command{
         Question question = questionsList.get(0);
         List<Answers> answersList = answerService.getAnswerByQuestionId(question.getId());
 
+        // List with all buttons
+        List<List<InlineKeyboardButton>> listOfButtonRows = new ArrayList<>();
+
         // Creating answers buttons block
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         List<InlineKeyboardButton> answersButtonList = new ArrayList<>();
         for (Answers answer:
                 answersList) {
-            answersButtonList.add(new InlineKeyboardButton());
-            answersButtonList.get(answersButtonList.size() - 1).setText(answer.getAnswer());
+            listOfButtonRows.add(Collections.singletonList(new InlineKeyboardButton()));
+            listOfButtonRows.get(listOfButtonRows.size()-1).get(0).setText(answer.getAnswer());
+
 
             // Set call back data in format: /command question_id:1 answer:1
-            answersButtonList.get(answersButtonList.size() - 1).setCallbackData(
+            listOfButtonRows.get(listOfButtonRows.size()-1).get(0).setCallbackData(
                     ASKQUESTION.getCommandName() + " "
                     + "question_id:" + question.getId() + " "
                     + "answer:" + answer.getId().toString());
@@ -80,8 +81,7 @@ public class QuestionAnswerCommand implements Command{
         stopButton.setCallbackData(STOP.getCommandName());
         stopQuestions.add(stopButton);
 
-        List<List<InlineKeyboardButton>> listOfButtonRows = new ArrayList<>();
-        listOfButtonRows.add(answersButtonList);
+
         listOfButtonRows.add(stopQuestions);
 
         inlineKeyboardMarkup.setKeyboard(listOfButtonRows);
