@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.github.konstantin-suspitsyn</groupId>
 	<artifactId>custom-quiz-telegram-bot</artifactId>
-	<version>0.5.1-SNAPSHOT</version>
+	<version>0.6.0-SNAPSHOT</version>
 	<name>custom-quiz-telegram-bot</name>
 	<description>Telegram Bot for Custom Quizzes</description>
 	<properties>
@@ -40,9 +40,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.3.3</version>
 		</dependency>
 
 		<dependency>

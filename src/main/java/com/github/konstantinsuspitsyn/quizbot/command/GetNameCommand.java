@@ -38,7 +38,7 @@ public class GetNameCommand implements Command {
                     user -> {
                         user.setState(null);
                         telegramUserService.save(user);
-                        sendBotMessageService.sendMessage(chatId, "Вы готовы приступать к квизу");
+                        sendBotMessageService.sendMessage(chatId, "Вы готовы приступать к квизу \n" + ASKQUESTION.getCommandName());
                     },
                     () -> {
                         sendBotMessageService.sendMessage(chatId, "Начните со " + START.getCommandName());

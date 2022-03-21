@@ -22,5 +22,5 @@ public class Answers {
     private String answer;
 
     @Column(name = "correct")
-    private boolean correct;
+    private int correct;
 }

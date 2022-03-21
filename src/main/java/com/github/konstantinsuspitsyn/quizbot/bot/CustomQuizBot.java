@@ -1,10 +1,7 @@
 package com.github.konstantinsuspitsyn.quizbot.bot;
 
 import com.github.konstantinsuspitsyn.quizbot.command.CommandContainer;
-import com.github.konstantinsuspitsyn.quizbot.service.AnswerService;
-import com.github.konstantinsuspitsyn.quizbot.service.QuestionService;
-import com.github.konstantinsuspitsyn.quizbot.service.SendBotMessageServiceImpl;
-import com.github.konstantinsuspitsyn.quizbot.service.TelegramUserService;
+import com.github.konstantinsuspitsyn.quizbot.service.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -22,8 +19,8 @@ public class CustomQuizBot extends TelegramLongPollingBot {
 
     private final CommandContainer commandContainer;
 
-    public CustomQuizBot(TelegramUserService telegramUserService, QuestionService questionService, AnswerService answerService) {
-        commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService, questionService, answerService);
+    public CustomQuizBot(TelegramUserService telegramUserService, QuestionService questionService, AnswerService answerService, UserRecordService userRecordService) {
+        commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService, questionService, answerService, userRecordService);
     }
 
     @Value("${bot.username}")

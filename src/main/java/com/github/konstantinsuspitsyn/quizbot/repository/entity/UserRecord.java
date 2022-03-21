@@ -2,16 +2,14 @@ package com.github.konstantinsuspitsyn.quizbot.repository.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "UserRecord")
 @Table(name = "user_record")
 @Data
 public class UserRecord {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -22,5 +20,5 @@ public class UserRecord {
     private Long questionId;
 
     @Column(name = "correct")
-    private boolean correct;
+    private int correct;
 }
