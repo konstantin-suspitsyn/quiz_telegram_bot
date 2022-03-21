@@ -35,3 +35,7 @@ Added functionality: if no callback or command was, checks for value in user sta
 
 ## 0.5.1-SNAPSHOT
 Refactoring if CustomQuizBot class
+
+## 0.6.0-SNAPSHOT
+Moved to postgres
+Added functionality to save user statistics

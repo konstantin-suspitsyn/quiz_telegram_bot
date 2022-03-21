@@ -13,14 +13,16 @@ services:
       BOT_DB_PASSWORD: ${BOT_DB_PASSWORD}
     restart: always
   cstb-db:
-    image: mysql
+    image: postgres
     restart: always
     environment:
-      MYSQL_USER: ${BOT_DB_USERNAME}
-      MYSQL_PASSWORD: ${BOT_DB_PASSWORD}
-      MYSQL_DATABASE: 'cstb_db'
-      MYSQL_ROOT_PASSWORD: 'root'
+      POSTGRES_DB: 'cstb_db'
+      # So you don't have to use root, but you can if you like
+      POSTGRES_USER: 'dev_csb_db_user'
+      # You can use whatever password you like
+      POSTGRES_PASSWORD: 'dev_csb_db_password'
+
     ports:
-      - '3306:3306'
+      - '5432:5432'
     expose:
-      - '3306'
+      - '5432'

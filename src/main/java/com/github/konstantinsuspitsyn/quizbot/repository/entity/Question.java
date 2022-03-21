@@ -2,10 +2,8 @@ package com.github.konstantinsuspitsyn.quizbot.repository.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Table(name = "question")
@@ -17,5 +15,9 @@ public class Question {
 
     @Column(name = "question")
     private String question;
+
+    @OneToMany(targetEntity = UserRecord.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "question_id", referencedColumnName = "id")
+    private List<UserRecord> userRecords;
 
 }

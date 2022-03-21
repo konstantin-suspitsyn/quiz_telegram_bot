@@ -5,6 +5,7 @@ import com.github.konstantinsuspitsyn.quizbot.repository.entity.QuestionReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,5 +21,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Optional<Question> findById(Long id) {
         return questionServiceRepository.findById(id);
+    }
+
+    @Override
+    public List<Question> getNextQuestion(String userId) {
+        return questionServiceRepository.getNextQuestion(userId);
     }
 }

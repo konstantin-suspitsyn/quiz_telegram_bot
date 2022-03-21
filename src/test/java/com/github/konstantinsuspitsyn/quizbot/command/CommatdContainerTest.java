@@ -1,9 +1,6 @@
 package com.github.konstantinsuspitsyn.quizbot.command;
 
-import com.github.konstantinsuspitsyn.quizbot.service.AnswerService;
-import com.github.konstantinsuspitsyn.quizbot.service.QuestionService;
-import com.github.konstantinsuspitsyn.quizbot.service.SendBotMessageService;
-import com.github.konstantinsuspitsyn.quizbot.service.TelegramUserService;
+import com.github.konstantinsuspitsyn.quizbot.service.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,11 +16,12 @@ public class CommatdContainerTest {
     private TelegramUserService telegramUserService;
     private QuestionService questionService;
     private AnswerService answerService;
+    private UserRecordService userRecordService;
 
     @BeforeEach
     public void init() {
         SendBotMessageService sendBMessageService = Mockito.mock(SendBotMessageService.class);
-        commandContainer = new CommandContainer(sendBMessageService, telegramUserService, questionService, answerService);
+        commandContainer = new CommandContainer(sendBMessageService, telegramUserService, questionService, answerService, userRecordService);
     }
 
     @Test

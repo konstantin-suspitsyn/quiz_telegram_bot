@@ -10,4 +10,6 @@ public interface QuestionService {
 
     Optional<Question> findById(Long id);
 
+    List<Question> getNextQuestion(String userId);
+
 }

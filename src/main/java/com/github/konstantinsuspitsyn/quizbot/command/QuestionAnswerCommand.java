@@ -2,9 +2,11 @@ package com.github.konstantinsuspitsyn.quizbot.command;
 
 import com.github.konstantinsuspitsyn.quizbot.repository.entity.Answers;
 import com.github.konstantinsuspitsyn.quizbot.repository.entity.Question;
+import com.github.konstantinsuspitsyn.quizbot.repository.entity.UserRecord;
 import com.github.konstantinsuspitsyn.quizbot.service.AnswerService;
 import com.github.konstantinsuspitsyn.quizbot.service.QuestionService;
 import com.github.konstantinsuspitsyn.quizbot.service.SendBotMessageService;
+import com.github.konstantinsuspitsyn.quizbot.service.UserRecordService;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -27,13 +29,15 @@ public class QuestionAnswerCommand implements Command{
     private final SendBotMessageService sendBotMessageService;
     private final QuestionService questionService;
     private final AnswerService answerService;
+    private final UserRecordService userRecordService;
 
     private final String STOP_QUESTIONS = "Довольно вопросов";
 
-    public QuestionAnswerCommand(SendBotMessageService sendBotMessageService, QuestionService questionService, AnswerService answerService) {
+    public QuestionAnswerCommand(SendBotMessageService sendBotMessageService, QuestionService questionService, AnswerService answerService, UserRecordService userRecordService) {
         this.sendBotMessageService = sendBotMessageService;
         this.questionService = questionService;
         this.answerService = answerService;
+        this.userRecordService = userRecordService;
     }
 
     /**
@@ -41,12 +45,17 @@ public class QuestionAnswerCommand implements Command{
      * @param chatId
      */
     public void sendNewSetOfQuestions(String chatId) {
-        // Temp id for question
-        // TODO: Autogenerate this id
-        Long idQuestion = 2L;
 
-        Question question = questionService.findById(idQuestion).get();
-        List<Answers> answersList = answerService.getAnswerByQuestionId(idQuestion);
+
+        List<Question> questionsList = questionService.getNextQuestion(chatId);
+
+        if (questionsList.isEmpty()) {
+            sendBotMessageService.sendMessage(chatId, "Вопросы закончились");
+            return;
+        }
+
+        Question question = questionsList.get(0);
+        List<Answers> answersList = answerService.getAnswerByQuestionId(question.getId());
 
         // Creating answers buttons block
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
@@ -102,15 +111,26 @@ public class QuestionAnswerCommand implements Command{
         Map<String, Integer> answersMap = getAnswers(message);
 
         Integer answerId = answersMap.get("answer");
+        Long questionId = Long.valueOf(answersMap.get("question_id"));
 
         Answers answer = answerService.findById(Long.valueOf(answerId)).get();
 
-        // TODO: write result to Database
-        if (answer.isCorrect() == true) {
-            sendBotMessageService.sendMessage(chatId, "Это правильный ответ");
+        UserRecord userRecord = new UserRecord();
+        userRecord.setUserId(chatId);
+        userRecord.setQuestionId(questionId);
+
+        String messageText;
+
+        if (answer.getCorrect() == 1) {
+            messageText = "Это правильный ответ";
+            userRecord.setCorrect(1);
+
         } else {
-            sendBotMessageService.sendMessage(chatId, "Это неправильный ответ");
+            messageText = "Это неправильный ответ";
+            userRecord.setCorrect(0);
         }
+        userRecordService.save(userRecord);
+        sendBotMessageService.sendMessage(chatId, messageText);
 
     }
 
