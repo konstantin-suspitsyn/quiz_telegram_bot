@@ -13,13 +13,11 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.util.*;
 
-import static com.github.konstantinsuspitsyn.quizbot.command.CommandName.ASKQUESTION;
-import static com.github.konstantinsuspitsyn.quizbot.command.CommandName.STOP;
+import static com.github.konstantinsuspitsyn.quizbot.command.CommandName.*;
 
 /**
  * Gives Question with answers
  * If user gave answer tell's him was it right or wrong
- * TODO: Add score
  */
 public class QuestionAnswerCommand implements Command{
 
@@ -47,7 +45,10 @@ public class QuestionAnswerCommand implements Command{
         List<Question> questionsList = questionService.getNextQuestion(chatId);
 
         if (questionsList.isEmpty()) {
-            sendBotMessageService.sendMessage(chatId, "Вопросы закончились");
+            sendBotMessageService.sendMessage(chatId, "Вопросы закончились.\n" +
+                    "Вы можете посмотреть свою статистку " + MYSTATISTICS.getCommandName() +
+                    "\nИли удалить свой результат и получить возможность начать заново " +
+                    DELETEMYRESULTS.getCommandName());
             return;
         }
 

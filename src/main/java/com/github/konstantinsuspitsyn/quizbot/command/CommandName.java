@@ -12,6 +12,8 @@ public enum CommandName {
     STAT("/stat"),
     GETNAME("/getname"),
     ASKQUESTION("/askquestion"),
+    MYSTATISTICS("/mystatistics"),
+    DELETEMYRESULTS("/deletemyresults"),
     COMMANDFROMSTATE("commandfromstate");
 
     public String getCommandName() {
