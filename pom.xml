@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.github.konstantin-suspitsyn</groupId>
 	<artifactId>custom-quiz-telegram-bot</artifactId>
-	<version>0.6.0-SNAPSHOT</version>
+	<version>0.7.1</version>
 	<name>custom-quiz-telegram-bot</name>
 	<description>Telegram Bot for Custom Quizzes</description>
 	<properties>
@@ -54,6 +54,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>

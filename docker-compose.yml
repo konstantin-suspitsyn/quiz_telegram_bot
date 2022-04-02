@@ -1,9 +1,10 @@
 version: '3.1'
 
 services:
-  customsurveytelegrambot:
+  customquiztelegrambot:
     depends_on:
       - cstb-db
+    env_file: .env
     build:
       context: .
     environment:
@@ -11,16 +12,21 @@ services:
       BOT_TOKEN: ${BOT_TOKEN}
       BOT_DB_USERNAME: ${BOT_DB_USERNAME}
       BOT_DB_PASSWORD: ${BOT_DB_PASSWORD}
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
     restart: always
   cstb-db:
-    image: postgres
+    env_file: .env
+    image: postgres:14.2-bullseye
     restart: always
     environment:
+      POSTGRES_INITDB_ARGS: '--auth-host=scram-sha-256'
+      POSTGRES_HOST_AUTH_METHOD: 'scram-sha-256'
       POSTGRES_DB: 'cstb_db'
       # So you don't have to use root, but you can if you like
-      POSTGRES_USER: 'dev_csb_db_user'
+      POSTGRES_USER: ${BOT_DB_USERNAME}
       # You can use whatever password you like
-      POSTGRES_PASSWORD: 'dev_csb_db_password'
+      POSTGRES_PASSWORD: ${BOT_DB_PASSWORD}
+
 
     ports:
       - '5432:5432'
