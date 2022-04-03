@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import java.util.Arrays;
 
 @DisplayName("Unit-level testing for CommandContainer")
-public class CommatdContainerTest {
+public class CommandContainerTest {
 
     private CommandContainer commandContainer;
     private TelegramUserService telegramUserService;

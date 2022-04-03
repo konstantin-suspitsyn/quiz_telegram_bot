@@ -19,4 +19,19 @@ public class UserRecordServiceImpl implements UserRecordService {
     public void save(UserRecord userRecord) {
         userRecordRepository.save(userRecord);
     }
+
+    @Override
+    public int getSumOfCorrectAnswers(String chatId) {
+        return userRecordRepository.getSumOfCorrectAnswers(chatId);
+    }
+
+    @Override
+    public int getCountOfAllAnswers(String chatId) {
+        return userRecordRepository.getCountOfAllAnswers(chatId);
+    }
+
+    @Override
+    public void deleteUserResults(String chatId) {
+        userRecordRepository.deleteUserResults(chatId);
+    }
 }

@@ -39,3 +39,10 @@ Refactoring if CustomQuizBot class
 ## 0.6.0-SNAPSHOT
 Moved to postgres
 Added functionality to save user statistics
+
+## 0.7.0
+Implemented functionality to look through statistics
+Implemented ability to delete given answers and start over 
+
+## 0.7.1
+Added .env file () 

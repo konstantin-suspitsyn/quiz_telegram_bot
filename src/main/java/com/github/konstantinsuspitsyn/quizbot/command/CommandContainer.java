@@ -23,7 +23,8 @@ public class CommandContainer {
                 .put(GETNAME.getCommandName(), new GetNameCommand(sendBotMessageService, telegramUserService))
                 .put(COMMANDFROMSTATE.getCommandName(), new CommandFromState(telegramUserService))
                 .put(ASKQUESTION.getCommandName(), new QuestionAnswerCommand(sendBotMessageService, questionService, answerService, userRecordService))
-
+                .put(MYSTATISTICS.getCommandName(), new MyStatisticsCommand(sendBotMessageService, userRecordService))
+                .put(DELETEMYRESULTS.getCommandName(), new DeleteMyResults(sendBotMessageService, userRecordService))
                 .build();
 
         unknownCommand = new UnknownCommand(sendBotMessageService);

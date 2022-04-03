@@ -6,4 +6,10 @@ public interface UserRecordService {
 
     void save(UserRecord userRecord);
 
+    int getSumOfCorrectAnswers(String chatId);
+
+    int getCountOfAllAnswers(String chatId);
+
+    void deleteUserResults(String chatId);
+
 }
