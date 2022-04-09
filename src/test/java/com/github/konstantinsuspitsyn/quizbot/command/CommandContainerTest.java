@@ -13,14 +13,14 @@ import java.util.Arrays;
 public class CommandContainerTest {
 
     private CommandContainer commandContainer;
-    private TelegramUserService telegramUserService;
-    private QuestionService questionService;
-    private AnswerService answerService;
-    private UserRecordService userRecordService;
 
     @BeforeEach
     public void init() {
         SendBotMessageService sendBMessageService = Mockito.mock(SendBotMessageService.class);
+        TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
+        QuestionService questionService = Mockito.mock(QuestionService.class);
+        AnswerService answerService = Mockito.mock(AnswerService.class);
+        UserRecordService userRecordService = Mockito.mock(UserRecordService.class);
         commandContainer = new CommandContainer(sendBMessageService, telegramUserService, questionService, answerService, userRecordService);
     }
 

@@ -16,3 +16,5 @@ Required software:
 to deploy application, switch to needed branch and run bash script:
 
 $ bash start.sh ${bot_username} ${bot_token}
+
+Create ```.env``` file from ```example.env``` and change properties

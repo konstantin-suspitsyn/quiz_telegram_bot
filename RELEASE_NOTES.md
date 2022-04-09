@@ -45,4 +45,5 @@ Implemented functionality to look through statistics
 Implemented ability to delete given answers and start over 
 
 ## 0.7.1
-Added .env file () 
+Added ```.env``` file
+See ```example.env```
