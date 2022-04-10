@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import static com.github.konstantinsuspitsyn.quizbot.command.CommandName.*;
 
 /**
- *  Telegram bot to create custom surveys
+ *  Telegram bot to run Quiz
  */
 @Component
 public class CustomQuizBot extends TelegramLongPollingBot {

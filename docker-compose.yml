@@ -27,7 +27,6 @@ services:
       # You can use whatever password you like
       POSTGRES_PASSWORD: ${BOT_DB_PASSWORD}
 
-
     ports:
       - '5432:5432'
     expose:

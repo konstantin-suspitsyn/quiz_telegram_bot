@@ -1,10 +1,8 @@
 package com.github.konstantinsuspitsyn.quizbot.command;
 
 import com.github.konstantinsuspitsyn.quizbot.repository.entity.TelegramUser;
-import com.github.konstantinsuspitsyn.quizbot.repository.entity.TelegramUserRepository;
 import com.github.konstantinsuspitsyn.quizbot.service.TelegramUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 

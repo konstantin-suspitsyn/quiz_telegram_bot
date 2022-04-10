@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.github.konstantin-suspitsyn</groupId>
 	<artifactId>custom-quiz-telegram-bot</artifactId>
-	<version>0.7.1</version>
+	<version>0.7.2</version>
 	<name>custom-quiz-telegram-bot</name>
 	<description>Telegram Bot for Custom Quizzes</description>
 	<properties>
@@ -25,6 +25,21 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<!-- It should be 1 -->
+			<version>1.4.200</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.22.0</version>
 			<scope>test</scope>
 		</dependency>
 
