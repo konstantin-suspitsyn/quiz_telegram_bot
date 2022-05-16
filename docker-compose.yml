@@ -13,11 +13,11 @@ services:
       BOT_DB_USERNAME: ${BOT_DB_USERNAME}
       BOT_DB_PASSWORD: ${BOT_DB_PASSWORD}
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
-    restart: always
+    restart: unless-stopped
   cstb-db:
     env_file: .env
     image: postgres:14.2-bullseye
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_INITDB_ARGS: '--auth-host=scram-sha-256'
       POSTGRES_HOST_AUTH_METHOD: 'scram-sha-256'
